@@ -3,16 +3,16 @@
 <div class="container mt-2">
     <div class="row">
         <div class="col-sm-7 text-center">
-            kaos-kaki
+            bau kaos-kaki
         </div>
         <div class="col-sm-5">
             <div class="card sdw bg-light">
                 <div class="card-body">
                     <form>
                         <div class="form-outline mb-3">
-                            <input type="text" id="srt" class="form-control" autocomplete="off" />
-                            <label class="form-label" for="srt">
-                                u'r full link
+                            <input type="text" id="link" class="form-control" autocomplete="off" />
+                            <label class="form-label" for="link">
+                                full link
                             </label>
                         </div>
                         <div class="text-center">
@@ -20,13 +20,13 @@
                         </div>
 
                         <div class="form-outline">
-                            <input type="text" id="link" class="form-control" autocomplete="off" />
-                            <label class="form-label" for="link">
-                                u'r custom short link
+                            <input type="text" id="srt" class="form-control" autocomplete="off" />
+                            <label class="form-label" for="srt">
+                                custom short link
                             </label>
                         </div>
                         <div class="mb-3">
-                            <small id="reslink" class="form-text text-muted"></small>
+                            <small id="resSrt" class="form-text text-muted"></small>
                         </div>
 
                         <div class="text-center">
@@ -50,7 +50,7 @@
     </div>
     <br />
     <div class="card sdw bg-8">
-        <div class="card-header">cara kerja</div>
+        <div class="card-header"> <i class="fas fa-cogs"></i> cara kerja</div>
         <div class="card-body">
             <h4>
                 <div class="fa-brands fa-github"></div>
@@ -59,10 +59,10 @@
     </div>
     <br />
     <div class="card sdw bg-7">
-        <div class="card-header">simpel development</div>
+        <div class="card-header"> <i class="fa-solid fa-code"></i> simpel development</div>
         <div class="card-body">
             <h4>
-                <div class="fa-brands fa-github"></div>
+                <div class="fa-brands fa-codepen"></div>
             </h4>
         </div>
     </div>
@@ -72,28 +72,38 @@
 @endsection @push('new-script')
 <script>
     $(document).ready(() => {
+        // all variable
         const link = $('#link')
         const srt = $('#srt')
+        const url = `{{ env('APP_URL') }}:8000/api/srt`
 
-        function realTime(){
-            link.keyup(()=>{
-                $('#reslink').html(`{{ env('APP_URL') }}/e-${link.val()}` )
-            })
-        }
+        // function call
         realTime()
 
-        $("a").click((event) => {
-            event.preventDefault();
-            alert('jangan diklik!')
-        });
-
+        function realTime(){
+            srt.keyup(()=>{
+                $('#resSrt').html(`{{ env('APP_URL') }}:8000/e-${srt.val()}` )
+            })
+        }
+        
         $("form").submit((event) => {
             event.preventDefault();
-            $("button").html("...");
-            setTimeout(() => {
-                $("button").html("submit");
+            $("button").html(`<i class="fas fa-cog fa-spin"></i>`);
+
+            $.post(url, {
+                user: 'guest',
+                link : link.val(),
+                srt: srt.val(),
+            }, (res, status)=>{
                 $('#respon').removeAttr("hidden").before('<hr>')
-            }, 4000);
+                $("button").html("submit");
+                $('.status').html(`status : ${status}`)
+                console.log(res);
+                const hasil = `{{ env('APP_URL') }}:8000/e-${res.data.srt}`
+                $('#trgt').html(`<i class="fa-solid fa-arrow-up-right-from-square"></i> ${hasil}`).attr('href', `${hasil}`)
+
+                console.log(status);
+            })
         });
     });
 </script>
