@@ -1,0 +1,72 @@
+* {
+    font-family: "JetBrains Mono", monospace;
+}
+
+body {
+    background-color: #ddd;
+}
+
+footer {
+    padding: 1rem;
+    text-align: center;
+}
+
+.sdw {
+    box-shadow: 8px 8px;
+    border-radius: 7px;
+    border: 1px solid;
+    transition: 0.3s;
+}
+
+.sdw:hover {
+    border: 1px solid;
+    box-shadow: 4px 4px;
+}
+
+.sdw-btn {
+    box-shadow: 5px 5px;
+    border-radius: 7px;
+    border: 1px solid;
+    transition: 0.3s;
+}
+
+.sdw-btn:hover {
+    border: 1px solid;
+    box-shadow: 3px 3px;
+}
+
+.bg-1 {
+    background-color: #ffc903;
+}
+
+.bg-2 {
+    background-color: #73ddff;
+}
+
+.bg-3 {
+    background-color: #ff5d4d;
+}
+
+.bg-4 {
+    background-color: #51dccd;
+}
+
+.bg-5 {
+    background-color: #8ebbf9;
+}
+
+.bg-6 {
+    background-color: #ffa947;
+}
+
+.bg-7 {
+    background-color: #ffc7ba;
+}
+
+.bg-8 {
+    background-color: #c0dafd;
+}
+
+.hg {
+    height: 200px;
+}
