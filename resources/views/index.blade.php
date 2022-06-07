@@ -52,18 +52,32 @@
     <div class="card sdw bg-8">
         <div class="card-header"> <i class="fas fa-cogs"></i> cara kerja</div>
         <div class="card-body">
-            <h4>
-                <div class="fa-brands fa-github"></div>
-            </h4>
+
+            <div class="row">
+                <div class="col-sm-5 text-center mb-4">
+                    <img src="{{ asset('/img/index/c1.png') }}" style="width: 300px" class="sdw" alt="cara">
+                </div>
+                <div class="col-sm-7">
+                    <ol>
+                        <li> Form isian link(tujuan) yang akan di perpendek.</li>
+                        <li> Shortlink yang akan dipakai nantinya.</li>
+                        <li> Respon dan status yang akan didapat ketika submit form.</li>
+                    </ol>
+                </div>
+            </div>
+
         </div>
     </div>
     <br />
     <div class="card sdw bg-7">
         <div class="card-header"> <i class="fa-solid fa-code"></i> simpel development</div>
-        <div class="card-body">
-            <h4>
-                <div class="fa-brands fa-codepen"></div>
-            </h4>
+        <div class="card-body overflow-auto">
+            <p>1. Set Route</p>
+            <img src="{{ asset('/img/index/d1.png') }}" class="sdw mb-3 " style="height: 160px" alt="route">
+
+            <p>2. Controller</p>
+            <img src="{{ asset('/img/index/d2.png') }}" class="sdw " style="height: 220px" alt="controller">
+
         </div>
     </div>
     <br />
