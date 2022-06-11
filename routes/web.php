@@ -32,3 +32,5 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/e-{any}', [MainController::class, 'getLink']);
+
+Route::view('/auth', 'layout.auth');

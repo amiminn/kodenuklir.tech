@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\ChatController;
 use App\Http\Controllers\Api\SrtLinkController;
+use App\Models\Chat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +24,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('srt', SrtLinkController::class)->except([
     'create', 'edit'
 ]);
+
+Route::apiResource('chat', ChatController::class)->except([
+    'create', 'edit', 'show', 'update', 'destroy'
+]);
+
+Route::get('chat/reset', [ChatController::class, 'reset']);

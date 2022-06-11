@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>chat</title>
+    </head>
+    <body>
+        <h1>hello</h1>
+        <br />
+        <table></table>
+        <br />
+        <form>
+            <input type="text" id="isiChat" autocomplete="off" />
+            <button type="submit">submit</button>
+        </form>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+            integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+            crossorigin="anonymous"
+        ></script>
+        <script>
+            $(document).ready(() => {
+                function getChat() {
+                    $.get("http://127.0.0.1:8000/api/chat", (res) => {
+                        let isi = "";
+
+                        res.data.map((c) => {
+                            isi += `<tr><td>${c.user}</td><td> : ${c.text}</td></tr>`;
+                        });
+
+                        $("table").html(isi);
+                    });
+                }
+
+                function postChat() {
+                    $("form").submit((event) => {
+                        event.preventDefault();
+                        $("button").html("...");
+                        $.post(
+                            "http://127.0.0.1:8000/api/chat",
+                            {
+                                user: "guest",
+                                text: $("#isiChat").val(),
+                            },
+                            (res) => {
+                                getChat();
+                                $("button").html("submit");
+                                $("#isiChat").val("");
+                            }
+                        );
+                    });
+                }
+                getChat();
+                postChat();
+            });
+        </script>
+    </body>
+</html>

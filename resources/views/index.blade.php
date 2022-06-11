@@ -2,35 +2,31 @@
 
 <div class="container mt-2">
     <div class="row">
-        <div class="col-sm-7 text-center">
-            bau kaos-kaki
+        <div class="col-md-7 text-center">
+            <b>kaos-kaki</b>
         </div>
-        <div class="col-sm-5">
-            <div class="card sdw bg-light">
+        <div class="col-md-5">
+            <div class="card sdw">
                 <div class="card-body">
                     <form>
-                        <div class="form-outline mb-3">
+                        <div class="md-form md-outline">
                             <input type="text" id="link" class="form-control" autocomplete="off" />
-                            <label class="form-label" for="link">
-                                full link
-                            </label>
-                        </div>
-                        <div class="text-center">
-                            <i class="fas fa-chevron-circle-down mb-3"></i>
+                            <label for="link">full link</label>
                         </div>
 
-                        <div class="form-outline">
-                            <input type="text" id="srt" class="form-control" autocomplete="off" />
-                            <label class="form-label" for="srt">
-                                custom short link
-                            </label>
+                        <div class="text-center">
+                            <i class="fas fa-chevron-circle-down"></i>
                         </div>
-                        <div class="mb-3">
+
+                        <div class="md-form md-outline">
+                            <input type="text" id="srt" class="form-control" autocomplete="off" />
+                            <label for="srt">custom short link</label>
                             <small id="resSrt" class="form-text text-muted"></small>
                         </div>
 
+
                         <div class="text-center">
-                            <button type="submit" class="btn sdw-btn bg-7">
+                            <button id="subLink" type="submit" class="btn sdw-btn bg-7">
                                 submit
                             </button>
                         </div>
@@ -73,17 +69,21 @@
         <div class="card-header"> <i class="fa-solid fa-code"></i> simpel development</div>
         <div class="card-body overflow-auto">
             <p>1. Set Route</p>
-            <img src="{{ asset('/img/index/d1.png') }}" class="sdw mb-3 " style="height: 160px" alt="route">
-
+            <div class="overflow-auto">
+                <img src="{{ asset('/img/index/d1.png') }}" class="sdw mb-3 " style="height: 160px" alt="route">
+            </div>
+            <hr>
             <p>2. Controller</p>
-            <img src="{{ asset('/img/index/d2.png') }}" class="sdw " style="height: 220px" alt="controller">
-
+            <div class="overflow-auto">
+                <img src="{{ asset('/img/index/d2.png') }}" class="sdw " style="height: 220px" alt="controller">
+            </div>
         </div>
     </div>
     <br />
 </div>
 
-@endsection @push('new-script')
+@endsection
+@push('new-script')
 <script>
     $(document).ready(() => {
         // all variable
@@ -102,7 +102,7 @@
         
         $("form").submit((event) => {
             event.preventDefault();
-            $("button").html(`<i class="fas fa-cog fa-spin"></i>`);
+            $("#subLink").html(`<i class="fas fa-cog fa-spin"></i>`);
 
             $.post(url, {
                 user: 'guest',
@@ -110,7 +110,7 @@
                 srt: srt.val(),
             }, (res, status)=>{
                 $('#respon').removeAttr("hidden").before('<hr>')
-                $("button").html("submit");
+                $("#subLink").html("submit");
                 $('.status').html(`status : ${status}`)
                 console.log(res);
                 const hasil = `{{ env('APP_URL') }}:8000/e-${res.data.srt}`

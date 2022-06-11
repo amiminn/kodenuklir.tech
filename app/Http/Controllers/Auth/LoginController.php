@@ -22,11 +22,11 @@ class LoginController extends Controller
         ]);
 
         // dd('berhasil');
- 
+
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
- 
-            return redirect()->intended('/');
+
+            return redirect()->intended('/dashboard');
         }
 
         return back()->with('loginErr', 'Login failed');
@@ -35,11 +35,11 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
- 
+
         $request->session()->invalidate();
-    
+
         $request->session()->regenerateToken();
-    
+
         return redirect('/login');
     }
 }
